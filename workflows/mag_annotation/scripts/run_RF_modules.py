@@ -4,6 +4,7 @@ import vambtools as _vambtools
 import collections as _collections
 import os
 import numpy as _np
+import gzip
 
 class Contig:
     """An object representing a contig mapping to a subject at position start:end.
@@ -372,7 +373,7 @@ class Viral_annotation:
                          'micompletehmm':viral_annotation_tool_parsers._parse_hmm_row,
                          'checkv':viral_annotation_tool_parsers._parse_checkv
                          }
-        with open(file,'r') as filehandle:
+        with gzip.open(file,'rt') as filehandle:
             header = filehandle.readline()
             if not filetype in function_dict:
                 raise ValueError('Somethings wrong with the name in the File type dict')
